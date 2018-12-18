@@ -65,8 +65,8 @@ def main():
     start = datetime.now()
 
     # https://api.vk.com/method/users.get?user_id=210700286&v=5.52
-    group_id = '-146728793'  # ID группы для запроса, всегда начинается с "-"
-    access_token = 'bbe5afa6bbe5afa6bbe5afa685bb82c972bbbe5bbe5afa6e7ee4c05399f87e19973c1b7'  # Токен для запросов, получаем при создание Standalone приложение ВК.
+    group_id = '-1'  # ID группы для запроса, всегда начинается с "-"
+    access_token = ''  # Токен для запросов, получаем при создание Standalone приложение ВК.
     version = '5.92'  # Версия запросов в ВК
     offset = 0  # смещение постов
     all_posts = []
