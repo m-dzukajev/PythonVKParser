@@ -47,7 +47,7 @@ def main():
     # https://api.vk.com/method/users.get?user_id=210700286&v=5.52
 
     id = input('Please input VK user ID: ')  # ID человека для запроса, пример: a_gamilkar или 2974856
-    access_token = '@TOKEN@'  # Токен для запросов, получаем при создание Standalone приложение ВК.
+    access_token = 'bbe5afa6bbe5afa6bbe5afa685bb82c972bbbe5bbe5afa6e7ee4c05399f87e19973c1b7'  # Токен для запросов, получаем при создание Standalone приложение ВК.
     respons = requests.get(f'https://api.vk.com/method/users.get?user_ids={id}&v=5.74&access_token={access_token}')
     write_json(respons.json())  # Трансформируем в словарь и записываем в файл person.json
 
