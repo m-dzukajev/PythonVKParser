@@ -9,8 +9,9 @@ def write_json(data):
 
 
 def writer_csv(data):
-    with open('person.csv', 'a') as file:
-        writer = csv.writer(file, delimiter='|')
+    #newline = '' убирает пустую строку
+    with open('person.csv.txt', 'a', newline='') as file:
+        writer = csv.writer(file, delimiter=',')
 
         writer.writerow((data['id'],
                          data['first_name'],
@@ -47,7 +48,7 @@ def main():
     # https://api.vk.com/method/users.get?user_id=210700286&v=5.52
 
     id = input('Please input VK user ID: ')  # ID человека для запроса, пример: a_gamilkar или 2974856
-    access_token = 'bbe5afa6bbe5afa6bbe5afa685bb82c972bbbe5bbe5afa6e7ee4c05399f87e19973c1b7'  # Токен для запросов, получаем при создание Standalone приложение ВК.
+    access_token = ''  # Токен для запросов, получаем при создание Standalone приложение ВК.
     respons = requests.get(f'https://api.vk.com/method/users.get?user_ids={id}&v=5.74&access_token={access_token}')
     write_json(respons.json())  # Трансформируем в словарь и записываем в файл person.json
 
@@ -55,7 +56,7 @@ def main():
     pers = data['response'][0]
 
     writer_csv(get_tada(pers))
-
+    print(pers)
 
 if __name__ == '__main__':
     main()
