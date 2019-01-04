@@ -21,8 +21,8 @@ def to_json(post_dict):
         json.dump(data, file)
 
 def writer_csv(data):
-    with open('posts.csv', 'a',encoding='utf-8') as file:
-        writer = csv.writer(file, delimiter='|')
+    with open('posts.csv', 'a',encoding='utf-8', newline='') as file:
+        writer = csv.writer(file, delimiter=';')
 
         writer.writerow((data['likes'],
                          data['reposts'],
@@ -76,7 +76,6 @@ def main():
         myparams = {'owner_id': group_id, 'v': version, 'access_token': access_token, 'count': 100, 'offset': offset}
         respons = requests.get('https://api.vk.com/method/wall.get', params=myparams)
         posts = respons.json()['response']['items']
-
         all_posts.extend(posts)
 
         oldest_post_date = posts[-1]['date']
