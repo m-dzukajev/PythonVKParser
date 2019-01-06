@@ -5,11 +5,6 @@ import json
 import csv
 
 
-def write_json(data):
-    # Если нет encoding='utf-8', то мы получаем ошибку связанную с кодировкой - UnicodeEncodeError: 'charmap' codec can't encode characters
-    with open('posts.json', 'w', encoding='utf-8') as file:
-        json.dump(data, file, indent=2, ensure_ascii=False)
-
 def to_json(post_dict):
     try:
         data = json.load(open('posts_data.json'))
@@ -17,11 +12,12 @@ def to_json(post_dict):
         data = []
     data.append(post_dict)
 
-    with open('posts_data.json','w', encoding='utf-8') as file:
-        json.dump(data, file)
+    with open('posts_data.json', 'w', encoding='utf-8') as file:
+        json.dump(data, file, indent=2, ensure_ascii=False)
+
 
 def writer_csv(data):
-    with open('posts.csv', 'a',encoding='utf-8', newline='') as file:
+    with open('posts_data.csv', 'a', encoding='utf-8', newline='') as file:
         writer = csv.writer(file, delimiter=';')
 
         writer.writerow((data['likes'],
@@ -63,7 +59,6 @@ def get_data(post):  # получаем необходимые данные из
 
 def main():
     start = datetime.now()
-
     # https://api.vk.com/method/users.get?user_id=210700286&v=5.52
     group_id = '-1'  # ID группы для запроса, всегда начинается с "-"
     access_token = ''  # Токен для запросов, получаем при создание Standalone приложение ВК.
@@ -85,21 +80,14 @@ def main():
         if oldest_post_date < date_x:
             break
 
-    data_posts = []
-
     for post in all_posts:
         post_data = get_data(post)
         writer_csv(post_data)
 
     end = datetime.now()
-
     total = end - start
     print(str(total))
-    write_json(respons.json())  # Трансформируем в словарь и записываем в файл person.json
-    # print(respons.url)
-    # аботаем с файлом который спарсили при запросе
-    # data = json.load(open('posts.json', encoding='utf-8'))
-    # print(len(data['response']))
+    to_json(respons.json())  # Трансформируем в словарь и записываем в файл person.json
     print(len(all_posts))
 
 
