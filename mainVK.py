@@ -10,7 +10,7 @@ def write_json(data):
 
 def writer_csv(data):
     #newline = '' убирает пустую строку
-    with open('person.csv.txt', 'a', newline='') as file:
+    with open('person.csv', 'a', newline='') as file:
         writer = csv.writer(file, delimiter=',')
 
         writer.writerow((data['id'],
