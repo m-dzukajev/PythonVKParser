@@ -17,6 +17,7 @@ def to_json(post_dict):
 
 
 def writer_csv(data):
+    ''' Функция записи данных в CSV '''
     with open('posts_data.csv', 'a', encoding='utf-8', newline='') as file:
         writer = csv.writer(file, delimiter=';')
 
