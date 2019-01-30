@@ -6,6 +6,7 @@ import csv
 
 
 def to_json(post_dict):
+    ''' Функция записи данных в JSON'''
     try:
         data = json.load(open('posts_data.json'))
     except:
@@ -17,6 +18,7 @@ def to_json(post_dict):
 
 
 def writer_csv(data):
+    ''' Функция записи данных в CSV '''
     with open('posts_data.csv', 'a', encoding='utf-8', newline='') as file:
         writer = csv.writer(file, delimiter=';')
 
@@ -60,8 +62,8 @@ def get_data(post):  # получаем необходимые данные из
 def main():
     start = datetime.now()
     # https://api.vk.com/method/users.get?user_id=210700286&v=5.52
-    group_id = '-1'  # ID группы для запроса, всегда начинается с "-"
-    access_token = ''  # Токен для запросов, получаем при создание Standalone приложение ВК.
+    group_id = '-146728793'  # ID группы для запроса, всегда начинается с "-"
+    access_token = 'bbe5afa6bbe5afa6bbe5afa685bb82c972bbbe5bbe5afa6e7ee4c05399f87e19973c1b7'  # Токен для запросов, получаем при создание Standalone приложение ВК.
     version = '5.92'  # Версия запросов в ВК
     offset = 0  # смещение постов
     all_posts = []
