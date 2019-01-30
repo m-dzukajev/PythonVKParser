@@ -6,6 +6,7 @@ import csv
 
 
 def to_json(post_dict):
+    ''' Функция записи данных в JSON'''
     try:
         data = json.load(open('posts_data.json'))
     except:
